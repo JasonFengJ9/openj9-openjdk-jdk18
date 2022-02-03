@@ -267,7 +267,7 @@ JLI_Launch(int argc, char ** argv,              /* main argc, argv */
         }
         printf("Command line args:\n");
         for (i = 0; i < argc ; i++) {
-            printf("argv[%d] = %s\n", i, argv[i]);
+            printf("argv[%d] = %s length (%zd) \n", i, argv[i], strlen(argv[i]));
         }
         AddOption("-Dsun.java.launcher.diag=true", NULL);
     }
@@ -1228,6 +1228,7 @@ ParseArguments(int *pargc, char ***pargv,
         jboolean has_arg = value != NULL && JLI_StrLen(value) > 0;
         jboolean has_arg_any_len = value != NULL;
 
+		printf("OpenJ9-Extension-Log ParseArguments arg (%s) length (%zd) \n", arg, strlen(arg));
 /*
  * Option to set main entry point
  */
@@ -1462,8 +1463,8 @@ InitializeJVM(JavaVM **pvm, JNIEnv **penv, InvocationFunctions *ifn)
                args.ignoreUnrecognized ? "JNI_TRUE" : "JNI_FALSE");
         printf("nOptions is %ld\n", (long)args.nOptions);
         for (i = 0; i < numOptions; i++)
-            printf("    option[%2d] = '%s'\n",
-                   i, args.options[i].optionString);
+            printf("    option[%2d] = '%s' (%zd) \n",
+                   i, args.options[i].optionString, strlen(args.options[i].optionString));
     }
 
     r = ifn->CreateJavaVM(pvm, (void **)penv, &args);

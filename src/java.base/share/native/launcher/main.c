@@ -159,6 +159,7 @@ main(int argc, char **argv)
         StdArg *stdargs = JLI_GetStdArgs();
         for (i = 0 ; i < margc ; i++) {
             margv[i] = stdargs[i].arg;
+            printf("OpenJ9-Extension-Log margv[%d] (%s) length (%zd) \n", i, margv[i], strlen(margv[i]));
         }
         margv[i] = NULL;
     }
